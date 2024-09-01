@@ -12,18 +12,9 @@ function Navbar() {
 
   return (
     <header className="nav-header">
-      <nav ref={navRef} className={showNav ? "responsive_nav" : ""}>
-        <a href="/#" className="home_nav" style={{ fontSize: "20px" }}>
+      <nav ref={navRef} className={showNav ? "responsive_nav" : "navbar"}>
+        <a href="/#" className="home_nav">
           Home
-        </a>
-        <a href="/#" style={{ fontSize: "20px" }}>
-          Pets
-        </a>
-        <a href="/#" style={{ fontSize: "20px" }}>
-          About us
-        </a>
-        <a href="/#" className="contact_nav" style={{ fontSize: "20px" }}>
-          Contact
         </a>
       </nav>
       <button className="nav-btn" onClick={toggleNav}>

@@ -408,7 +408,78 @@ header {
   background-color: var(--mainColor);
 }
 
-.nav-links {
+
+
+
+
+
+
+
+
+
+/* Navbar Container */
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+/* Navbar Links */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect */
+.navbar a:hover {
+  transform: scale(1.1);
+  color: #f4d03f;
+}
+
+/* Responsive Navigation */
+.responsive_nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #333;
+  width: 100%;
+  text-align: right;
+}
+
+.responsive_nav a {
+  padding: 15px 20px;
+  border-bottom: 1px solid #444;
+}
+
+/* Navbar Button */
+.nav-btn {
+  font-size: 24px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-btn:focus {
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+/* .nav-links {
   font-size: "52px";
   text-align: center;
 }
@@ -432,7 +503,7 @@ header .nav-btn {
 
 nav a:hover {
   color: var(--secondaryColor);
-}
+} */
 
 /* @media only screen and (max-width: 1024px) {
   header .nav-btn {
