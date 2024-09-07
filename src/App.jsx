@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import Navbar from "./navbar";
-import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Footer from "./Footer";
 import AdoptedPetContext from "./AdoptedPet";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
+import MyImage from "../images/ADOPT ME LOGO 2.png";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity, //1000 * 60 * 10,  for 10min
+      staleTime: Infinity,
       cacheTime: Infinity,
     },
   },
@@ -18,22 +19,38 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const adoptedPet = useState(null);
+
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AdoptedPetContext.Provider value={adoptedPet}>
-          <header>
-            <React.Fragment>
-              <Navbar />
-            </React.Fragment>
-            {/* <Link to="/"> Adopt Me!</Link> */}
-          </header>
-          <h1>Adopt Me!</h1>
+          {/* <div className="flex flex-col min-h-screen"> */}
+            <header></header>
 
-          <Routes>
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/" element={<SearchParams />} />
-          </Routes>
+            {/* Add a wrapper for the main content */}
+            <main className="flex-grow w-full flex flex-col justify-center items-center p-4">
+              <Link to="/#">
+                <img
+                  src={MyImage}
+                  className="w-16 h-auto"
+                  alt="Adopt Me Logo"
+                />
+              </Link>
+
+              {/* The title */}
+              <h1 className="text-4xl font-bold my-6">
+                Helping you find your forever friend.
+              </h1>
+
+              {/* The Routes */}
+              <Routes>
+                <Route path="/details/:id" element={<Details />} />
+                <Route path="/" element={<SearchParams />} />
+              </Routes>
+            </main>
+
+            <Footer />
+          {/* </div> */}
         </AdoptedPetContext.Provider>
       </QueryClientProvider>
     </BrowserRouter>
@@ -43,22 +60,3 @@ const App = () => {
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(<App />);
-
-// const App = () => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h1", {}, "Adopt Me!"),
-//     React.createElement(Pet, {
-//       name: "Luna",
-//       animal: "Dog",
-//       breed: "Havanese",
-//     }),
-//     React.createElement(Pet, {
-//       name: "Pepper",
-//       animal: "Bird",
-//       breed: "Cockatiel",
-//     }),
-//     React.createElement(Pet, { name: "Doink", animal: "Cat", breed: "Mix" }),
-//   ]);
-// };
-
-//root.render(React.createElement(App));
