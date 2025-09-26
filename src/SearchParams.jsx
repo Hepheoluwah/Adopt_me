@@ -23,7 +23,7 @@ const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="search-paraams">
+    <div className="search-params">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -33,74 +33,87 @@ const SearchParams = () => {
             breed: formData.get("breed") ?? "",
             location: formData.get("location") ?? "",
           };
-          //requestPets();
           setRequestParams(obj);
         }}
       >
         {adoptedPet ? (
-          <div className="pet image-container">
-            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+          <div className="adopted-pet-display">
+            <div className="adopted-pet-header">
+              <h3>Your Adopted Pet</h3>
+              <span className="adopted-badge">✓ Adopted</span>
+            </div>
+            <div className="pet image-container">
+              <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+            </div>
+            <p className="adopted-pet-name">{adoptedPet.name}</p>
           </div>
-        ) : null}
-        <label htmlFor="location">
-          Location
-          <input
-            //onChange={(e) => setLocation(e.target.value)}
-            name="location"
-            id="location"
-            //value={location}
-            placeholder="Location"
-          />
-        </label>
-        <label htmlFor="animal">
-          Animal
-          <select
-            name="animal"
-            id="animal"
-            //value={animal}
-            onChange={(e) => {
-              setAnimal(e.target.value);
-              //setBreed("");
-            }}
-          >
-            <option />
-            {ANIMALS.map((animal) => (
-              <option key={animal} value={animal}>
-                {animal}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="breed">
-          Breed
-          <select
-            //onChange={(e) => setBreed(e.target.value)}
-            name="breed"
-            id="breed"
-            disabled={BREEDS.length === 0}
-            //value={breed}
-          >
-            <option />
-            {BREEDS.map((breed) => (
-              <option key={breed} value={breed}>
-                {breed}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button>Submit</button>
+        ) : (
+          <div className="search-header">
+            <h3>Find Your Perfect Pet</h3>
+            <p>Search for pets available for adoption in your area</p>
+          </div>
+        )}
+        
+        <div className="form-group">
+          <label htmlFor="location">
+            <span className="label-text">Location</span>
+            <input
+              name="location"
+              id="location"
+              placeholder="Enter your city or zip code"
+              type="text"
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="animal">
+            <span className="label-text">Animal Type</span>
+            <select
+              name="animal"
+              id="animal"
+              onChange={(e) => {
+                setAnimal(e.target.value);
+              }}
+            >
+              <option value="">Select an animal</option>
+              {ANIMALS.map((animal) => (
+                <option key={animal} value={animal}>
+                  {animal.charAt(0).toUpperCase() + animal.slice(1)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="breed">
+            <span className="label-text">Breed</span>
+            <select
+              name="breed"
+              id="breed"
+              disabled={BREEDS.length === 0}
+            >
+              <option value="">Select a breed</option>
+              {BREEDS.map((breed) => (
+                <option key={breed} value={breed}>
+                  {breed}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <button type="submit" className="search-button">
+          <span>Search Pets</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
       </form>
 
-      {/* {pets.map((pet) => (
-        <Pet
-          name={pet.name}
-          animal={pet.animal}
-          breed={pet.breed}
-          key={pet.id}
-        />
-      ))} */}
-
-      <Results pets={pets} />
+      <Results pets={pets} isLoading={results.isLoading} />
     </div>
   );
 };

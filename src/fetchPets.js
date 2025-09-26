@@ -1,6 +1,6 @@
 const fetchPet = async ({ queryKey }) => {
   const id = queryKey[1];
-  const apiUrl = import.meta.env.VITE_PET_API_URL; // Access the API URL from environment variables
+  const apiUrl = "http://pets-v2.dev-apis.com";
 
   const apiRes = await fetch(`${apiUrl}/pets?id=${id}`);
 

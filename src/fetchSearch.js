@@ -1,7 +1,7 @@
 async function fetchSearch({ queryKey }) {
   const { animal, location, breed } = queryKey[1];
 
-  const apiUrl = import.meta.env.VITE_PET_API_URL; // Access the API URL from environment variables
+  const apiUrl = "http://pets-v2.dev-apis.com";
 
   const res = await fetch(
     `${apiUrl}/pets?animal=${animal}&location=${location}&breed=${breed}`

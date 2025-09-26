@@ -3,7 +3,7 @@ const fetchBreedList = async ({ queryKey }) => {
 
   if (!animal) return [];
 
-  const apiUrl = import.meta.env.VITE_PET_API_URL; // Access the API URL from environment variables
+  const apiUrl = "http://pets-v2.dev-apis.com";
 
   const apiRes = await fetch(`${apiUrl}/breeds?animal=${animal}`);
 

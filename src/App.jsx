@@ -24,25 +24,21 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AdoptedPetContext.Provider value={adoptedPet}>
-          {/* <div className="flex flex-col min-h-screen"> */}
-            <header></header>
-
-            {/* Add a wrapper for the main content */}
-            <main className="flex-grow w-full flex flex-col justify-center items-center p-4">
-              <Link to="/#">
+          <div className="app-container">
+            <header className="app-header">
+              <Link to="/" className="logo-link">
                 <img
                   src={MyImage}
-                  className="w-16 h-auto"
+                  className="logo"
                   alt="Adopt Me Logo"
                 />
               </Link>
-
-              {/* The title */}
-              <h1 className="text-4xl font-bold my-6">
+              <h1 className="app-title">
                 Helping you find your forever friend.
               </h1>
+            </header>
 
-              {/* The Routes */}
+            <main className="app-main">
               <Routes>
                 <Route path="/details/:id" element={<Details />} />
                 <Route path="/" element={<SearchParams />} />
@@ -50,7 +46,7 @@ const App = () => {
             </main>
 
             <Footer />
-          {/* </div> */}
+          </div>
         </AdoptedPetContext.Provider>
       </QueryClientProvider>
     </BrowserRouter>
