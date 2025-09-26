@@ -17,7 +17,6 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   const [BREEDS] = useBreedList(animal);
   const [adoptedPet] = useContext(AdoptedPetContext);
-  //const [adoptedPet, setAdoptedPet] = useContext(AdoptedPetContext);   //To read and write set
 
   const results = useQuery(["search", requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
