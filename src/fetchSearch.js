@@ -1,7 +1,7 @@
 async function fetchSearch({ queryKey }) {
   const { animal, location, breed } = queryKey[1];
 
-  const apiUrl = "http://pets-v2.dev-apis.com";
+  const apiUrl = "https://pets-v2.dev-apis.com";
 
   const res = await fetch(
     `${apiUrl}/pets?animal=${animal}&location=${location}&breed=${breed}`
